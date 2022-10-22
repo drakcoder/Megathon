@@ -17,3 +17,24 @@ WEATHERS = {
     "tornado": ["tornado_1", "tornado_2", "tornado_3", "tornado_4", "tornado_5"],
     "storms": ["storms_1", "storms_2", "storms_3", "storms_4", "storms_5"]
 }
+
+themes_songs_map = {
+    'road trip': [
+        'Aao Milo Chale'
+    ],
+    'nature': [
+        'Sawan Barse Tarse Dil'
+    ],
+    'party': [
+        'Beat Juunglee'
+    ],
+    'chill' : [
+        'Abhi Mujh Mein Kahin'
+    ],
+    'Emotional' : [
+        'Galliyan'
+    ],
+    'Calming Classical' : [
+        'Rafu'
+    ]
+}
