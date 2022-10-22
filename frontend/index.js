@@ -5,7 +5,7 @@ recognition.lang = "hi-IN";
 
 var listening = false;
 var interim_transcript = '';
-var final_transcript = "प्ले रंगम्मा मंगम्मा";
+var final_transcript = '';
 var songs;
 
 recognition.onresult = function(event) {
@@ -14,8 +14,8 @@ recognition.onresult = function(event) {
     for (var i = event.resultIndex; i < event.results.length; ++i) {
       if (event.results[i].isFinal) {
         final_transcript += event.results[i][0].transcript;
-         document.getElementById('transcript').value = final_transcript;
-        toggle();
+        document.getElementById('transcript').value = final_transcript;
+        record();
       } else {
         interim_transcript += event.results[i][0].transcript;
             document.getElementById('transcript').value = interim_transcript;
@@ -23,6 +23,7 @@ recognition.onresult = function(event) {
     }
     console.log(final_transcript);
     apicall();
+    final_transcript = '';
 };
 
 function record() { 
@@ -53,4 +54,15 @@ function apicall() {
       .catch(function (error) {
         console.log(error);
       });
+}
+
+function accident() {
+  axios.post('http://127.0.0.1:5000/accident', {"airbags":false})
+  .then(function (response) {
+    
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
 }
