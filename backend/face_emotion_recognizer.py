@@ -39,7 +39,7 @@ result = ""
 def generate_frames():
     global result
     camera=cv2.VideoCapture(0)
-    while result == "":
+    while True:
         success,frame=camera.read()
         if not success:
             break

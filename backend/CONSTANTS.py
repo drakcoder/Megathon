@@ -5,17 +5,16 @@ client_SECRET = '706496ba799c445295d345a346b35209'
 
 # Types of weather linked to songs
 WEATHERS = {
-    "cloudy": ["cloudy_1", "cloudy_2", "cloudy_3", "cloudy_4", "cloudy_5"],
-    "snow": ["snow_1", "snow_2", "snow_3", "snow_4", "snow_5"],
-    "thunder_and_lightning": ["thunder_and_lightning_1", "thunder_and_lightning_2", "thunder_and_lightning_3", "thunder_and_lightning_4", "thunder_and_lightning_5"],
-    "frost_and_ice": ["frost_and_ice_1", "frost_and_ice_2", "frost_and_ice_3", "frost_and_ice_4", "frost_and_ice_5"],
+    "cloudy": ["The Rain Song", "TRELLAS", "Halley's Comet", "Japanese Denim", "Mariners Apartment Complex"],
+    "snow": ["Snowed In.", "Cold as Ice", "A Hazy Shade Of Winter.", "Wintertime Love", "Winter Song"],
+    "thunder_and_lightning": ["Riders on the Storm", "Storm Warning", "Electrical Storm", "Stormy Monday Blues", "n From the Storm"],
     "rain": ["rain_1", "rain_2", "rain_3", "rain_4", "rain_5"],
-    "fog": ["fog_1", "fog_2", "fog_3", "fog_4", "fog_5"],
-    "humidity": ["humidity_1", "humidity_2", "humidity_3", "humidity_4", "humidity_5"],
-    "hail": ["hail_1", "hail_2", "hail_3", "hail_4", "hail_5"],
-    "wind": ["wind_1", "wind_2", "wind_3", "wind_4", "wind_5"],
-    "tornado": ["tornado_1", "tornado_2", "tornado_3", "tornado_4", "tornado_5"],
-    "storms": ["storms_1", "storms_2", "storms_3", "storms_4", "storms_5"]
+    "fog": ["A Foggy Day", "The Foggy Dew", "London Bridge is Falling Down", "Greensleeves", "Ocean of grass"],
+    "humidity": ["travelling storm", "jungle rains", "rain hood", "the rain repeats", "just a rainy day"],
+    "hail": ["sky water", "pitter patter droplets", "tiny rain drops", "constant downpour", "cold dripping rainfall"],
+    "wind": ["The Wind Cries Mary", "The Wind", "Summer Wind", "Blowin' In The Wind", "Winter Winds"],
+    "tornado": ["singing tornado", "little big town", "tornado song", "the funny song"],
+    "storms": ["Purple Rain", "'Singin' in the Rain", "I Wish It Would Rain", "Dreams", "Rain on Me"]
 }
 
 themes_songs_map = {
