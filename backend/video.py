@@ -34,3 +34,25 @@ for image in images:
 
 cv2.destroyAllWindows()
 video.release()
+
+
+
+from moviepy.editor import *
+  
+   
+# loading video dsa gfg intro video
+clip = VideoFileClip("assets/videos/video.avi")
+  
+  
+# # getting only first 5 seconds
+clip = clip.subclip(0, 6)
+  
+# loading audio file
+audioclip = AudioFileClip("assets/audio/example.mp3").subclip(10, 16)
+  
+# adding audio to the video clip
+videoclip = clip.set_audio(audioclip)
+  
+videoclip.write_videofile("assets/videos/video_with_audio.webm")
+# showing video clip
+# videoclip.ipython_display()
