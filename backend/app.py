@@ -6,6 +6,7 @@ from flask import Flask, request
 from languageConverter import HandleQuery
 from flask_cors import CORS
 from model_implementation import predict
+from video import getVideo
  
 
 # Packages for Spotify
@@ -22,6 +23,11 @@ CORS(app)
 # The route() function of the Flask class is a decorator,
 # which tells the application which URL should call
 # the associated function.
+
+@app.route('/movie', methods=['POST'])
+def movie(mp3_url):
+    return getVideo(mp3_url)
+
 
 
 @app.route('/vc', methods=['GET', 'POST'])
