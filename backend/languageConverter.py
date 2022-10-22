@@ -36,8 +36,14 @@ def getSong(song):
     results = sp.search(q=song, limit=20)
     songs=[]
     for idx, track in enumerate(results['tracks']['items']):
-        print(idx, track['name'])
-        songs.append(track['name'])
+        songs.append({
+            "name": track['name'],
+            "artisits": [
+                artist["name"] for artist in track["artists"]],
+            "duration_ms": track["duration_ms"],
+            'song_url': track['preview_url'],
+            'cover art': track['album']['images'][0]['url']
+        })
     return songs    
 
 

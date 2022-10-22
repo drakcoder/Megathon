@@ -5,6 +5,7 @@ import json
 from flask import Flask, request
 from languageConverter import HandleQuery
 from flask_cors import CORS
+import random
 
 # Packages for Spotify
 from CONSTANTS import client_ID, client_SECRET, WEATHERS
@@ -77,20 +78,21 @@ client_ID = '37f5cdbd24004b1db95e46a7a37b9d8e'
 client_SECRET = '706496ba799c445295d345a346b35209'
 
 
-def get_song(song_name):
+def get_song(song_name,limit=1):
     sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(client_id=client_ID,
                                                                client_secret=client_SECRET))
-
-    results = sp.search(q=song_name, limit=1)
+    songs=[]
+    results = sp.search(q=song_name, limit=limit)
     for idx, track in enumerate(results['tracks']['items']):
-        return {
+        songs.append({
             "name": track['name'],
             "artisits": [
                 artist["name"] for artist in track["artists"]],
             "duration_ms": track["duration_ms"],
             'song_url': track['preview_url'],
             'cover art': track['album']['images'][0]['url']
-        }
+        })
+    return songs
 
 
 """
