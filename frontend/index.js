@@ -7,6 +7,8 @@ var listening = false;
 var interim_transcript = '';
 var final_transcript = '';
 var songs;
+var bags = true;
+var respText = '';
 
 recognition.onresult = function(event) {
     
@@ -57,10 +59,10 @@ function apicall() {
 }
 
 function accident() {
-  axios.post('http://127.0.0.1:5000/accident', {"airbags":false})
+  axios.post('http://127.0.0.1:5000/accident', {airbags:bags,})
   .then(function (response) {
-    
-    console.log(response);
+    respText = response.data;
+    console.log(respText);
   })
   .catch(function (error) {
     console.log(error);
