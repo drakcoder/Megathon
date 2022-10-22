@@ -5,13 +5,14 @@ import json
 from flask import Flask, request
 from languageConverter import HandleQuery
 from flask_cors import CORS
+from model_implementation import predict
+ 
 
 # Packages for Spotify
 from CONSTANTS import client_ID, client_SECRET, WEATHERS, themes_songs_map
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials, SpotifyOAuth
 import types
-
 
 # Flask constructor takes the name of
 # current module (__name__) as argument.
@@ -42,7 +43,15 @@ def accident():
         if body['airbags']:
             return json.dumps({"message": "authorities have been alerted about the accident"}), 200, {"ContentType": "application/json"}
         else:
-            return json.dumps({"message": "no major accident occured"}), 403, {"ContentType": "application/json"}
+            return json.dumps({"message":"no major accident occured"}),403,{"ContentType":"application/json"}
+
+@app.route('/reportVitals',methods=['GET','POST'])
+def reportVitals():
+    if request.method=='POST':
+        body=request.json
+        score=predict(body['vals'])
+        return json.dumps({"score":score[0]}),200,{"ContentType":"application/json"}
+ 
 
 
 # For recommendations according to weather
