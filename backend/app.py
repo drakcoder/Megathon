@@ -2,17 +2,18 @@
 # Importing flask module in the project is mandatory
 # An object of Flask class is our WSGI application.
 import json
-from flask import Flask, request
+from flask import Flask, request, Response
 from languageConverter import HandleQuery
 from flask_cors import CORS
 from model_implementation import predict
- 
+from face_emotion_recognizer import generate_frames, result
 
 # Packages for Spotify
 from CONSTANTS import client_ID, client_SECRET, WEATHERS, themes_songs_map
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials, SpotifyOAuth
 import types
+
 
 # Flask constructor takes the name of
 # current module (__name__) as argument.
@@ -140,6 +141,11 @@ def previously_played_shows():
 def get_theme_song(theme):
     return themes_songs_map[theme]
 
+
+@app.route('/video')
+def video():
+    return Response(generate_frames(),mimetype='multipart/x-mixed-replace; boundary=frame')
+    
 # main driver function
 if __name__ == '__main__':
 
