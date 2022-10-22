@@ -127,6 +127,24 @@ def previously_played_shows():
         print(idx, track['artists'][0]['name'], " – ", track['name'])
 """
 
+
+themes_songs_map = {
+    'road trip': [
+        'Aao Milo Chale',
+        'Ilaahi',
+        'Khaabon Ke Parindey'
+    ],
+    'nature': [
+        'Aao Milo Chale',
+        'Ilaahi',
+        'Khaabon Ke Parindey'
+    ]
+}
+
+@app.route('/theme_songs')
+def get_theme_song(theme):
+    return themes_songs_map[theme]
+
 # main driver function
 if __name__ == '__main__':
 
