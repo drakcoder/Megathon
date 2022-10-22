@@ -64,3 +64,14 @@ def HandleQuery(body):
                 return False
             else:
                 return "Closing the door"
+    if converted[0].lower()=='close':
+        if converted[1]=='the' and converted[2]=='door':
+            if body['running']:
+                return False
+            else:
+                return "Closing the door"
+        if converted[1]=='door':
+            if body['running']:
+                return False
+            else:
+                return "Closing the door"
