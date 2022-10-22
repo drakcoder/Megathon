@@ -5,6 +5,7 @@ import json
 from flask import Flask,request
 from languageConverter import HandleQuery
 from flask_cors import CORS
+from model_implementation import predict
  
 # Flask constructor takes the name of
 # current module (__name__) as argument.
@@ -33,6 +34,13 @@ def accident():
             return json.dumps({"message":"authorities have been alerted about the accident"}),200,{"ContentType":"application/json"}
         else:
             return json.dumps({"message":"no major accident occured"}),403,{"ContentType":"application/json"}
+
+@app.route('/reportVitals',methods=['GET','POST'])
+def reportVitals():
+    if request.method=='POST':
+        body=request.json
+        score=predict(body['vals'])
+        return json.dumps({"score":score}),200,{"ContentType":"application/json"}
  
 # main driver function
 if __name__ == '__main__':
