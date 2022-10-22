@@ -24,6 +24,15 @@ def vc():
             return json.dumps({"result":result}),200,{'ContentType':'application/json'}
         else:
             return json.dumps({"result":False}),403,{'ContentType':'application/json'}
+
+@app.route('/accident',methods=['GET','POST'])
+def accident():
+    if request.method=='POST':
+        body=request.json
+        if body['airbags']:
+            return json.dumps({"message":"authorities have been alerted about the accident"}),200,{"ContentType":"application/json"}
+        else:
+            return json.dumps({"message":"no major accident occured"}),403,{"ContentType":"application/json"}
  
 # main driver function
 if __name__ == '__main__':
