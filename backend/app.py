@@ -7,7 +7,7 @@ from languageConverter import HandleQuery
 from flask_cors import CORS
 
 # Packages for Spotify
-from CONSTANTS import client_ID, client_SECRET, WEATHERS
+from CONSTANTS import client_ID, client_SECRET, WEATHERS, themes_songs_map
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials, SpotifyOAuth
 import types
@@ -126,20 +126,6 @@ def previously_played_shows():
         track = item['track']
         print(idx, track['artists'][0]['name'], " – ", track['name'])
 """
-
-
-themes_songs_map = {
-    'road trip': [
-        'Aao Milo Chale',
-        'Ilaahi',
-        'Khaabon Ke Parindey'
-    ],
-    'nature': [
-        'Aao Milo Chale',
-        'Ilaahi',
-        'Khaabon Ke Parindey'
-    ]
-}
 
 @app.route('/theme_songs')
 def get_theme_song(theme):
