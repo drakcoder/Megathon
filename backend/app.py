@@ -52,7 +52,6 @@ def reportVitals():
         score=predict(body['vals'])
         return json.dumps({"score":score[0]}),200,{"ContentType":"application/json"}
  
-            return json.dumps({"message": "no major accident occured"}), 403, {"ContentType": "application/json"}
 
 
 # For recommendations according to weather
