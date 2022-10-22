@@ -27,7 +27,7 @@ def takeCommandHindi():
             return "None"
         return Query
 
-# takeCommandHindi()
+takeCommandHindi()
 
 def getSong(song):
     sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(client_id="1bbc26bf3d92460ba5dec599b34cf3ab",
@@ -37,4 +37,4 @@ def getSong(song):
     for idx, track in enumerate(results['tracks']['items']):
         print(idx, track['name'])
 
-getSong("stranger things")
+# getSong("stranger things")

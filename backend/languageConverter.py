@@ -41,12 +41,19 @@ def getSong(song):
     return songs    
 
 
-def HandleQuery(query):
-        converted=ts.bing(query)
-        converted=converted.split(' ')
-        if converted[0].lower()=='play':
-                song=''
-                for w in converted[1:]:
-                        song+=w+' '
-                songs=getSong(song)
-                return songs
+def HandleQuery(body):
+    query=body['query']
+    converted=ts.bing(query)
+    converted=converted.split(' ')
+    if converted[0].lower()=='play':
+            song=''
+            for w in converted[1:]:
+                    song+=w+' '
+            songs=getSong(song)
+            return songs
+    if converted[0].lower()=='shut':
+        if converted[1]=='the' and converted[2]=='door':
+            if body['running']:
+                return False
+            else:
+                return "Closing the door"

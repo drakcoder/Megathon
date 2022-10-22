@@ -17,8 +17,11 @@ app = Flask(__name__)
 def vc():
     if request.method=='POST':
         body=request.json
-        result=HandleQuery(body['query'])
-        return json.dumps({"result":result}),200,{'ContentType':'application/json'}
+        result=HandleQuery(body)
+        if result:
+            return json.dumps({"result":result}),200,{'ContentType':'application/json'}
+        else:
+            return json.dumps({"result":False}),403,{'ContentType':'application/json'}
  
 # main driver function
 if __name__ == '__main__':
