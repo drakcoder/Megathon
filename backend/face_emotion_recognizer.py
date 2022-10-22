@@ -33,6 +33,8 @@ cv2.ocl.setUseOpenCL(False)
 # dictionary which assigns each label an emotion (alphabetical order)
 emotion_dict = {0: "Angry", 1: "Disgusted", 2: "Fearful",
                 3: "Happy", 4: "Neutral", 5: "Sad", 6: "Surprised"}
+songs = {0: "I'm not afraid", 1: "love the way you lie", 2: "Warrior",
+                3: "Gunde jari galanthayindhe", 4: "mellamellaga", 5: "break up song", 6: "Thare zameen par"}
 
 result = ""
 
@@ -57,6 +59,8 @@ def generate_frames():
                 prediction = model.predict(cropped_img)
                 maxindex = int(np.argmax(prediction))
                 cv2.putText(frame, emotion_dict[maxindex], (x+20, y-60),
+                            cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2, cv2.LINE_AA)
+                cv2.putText(frame, songs[maxindex], (10,30),
                             cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2, cv2.LINE_AA)
                 result = emotion_dict[maxindex]
 
