@@ -1,31 +1,31 @@
-import speech_recognition as sr
+# import speech_recognition as sr
 import translators as ts
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 
-def takeCommandHindi():
+# def takeCommandHindi():
          
-    r = sr.Recognizer()
-    with sr.Microphone() as source:
+#     r = sr.Recognizer()
+#     with sr.Microphone() as source:
           
 
-        print('Listening')
-        r.pause_threshold = 0.6
-        r.adjust_for_ambient_noise(source)
-        audio = r.listen(source)  
-        try:
-            print("Recognizing")
-            Query = r.recognize_google(audio, language='hi-In')
+#         print('Listening')
+#         r.pause_threshold = 0.6
+#         r.adjust_for_ambient_noise(source)
+#         audio = r.listen(source)  
+#         try:
+#             print("Recognizing")
+#             Query = r.recognize_google(audio, language='hi-In')
               
-            print("the query is printed='", Query, "'")
-            print(ts.bing(Query))
+#             print("the query is printed='", Query, "'")
+#             print(ts.bing(Query))
           
 
-        except Exception as e:
-            print(e)  
-            print("Say that again sir")
-            return "None"
-        return Query
+#         except Exception as e:
+#             print(e)  
+#             print("Say that again sir")
+#             return "None"
+#         return Query
 
 # takeCommandHindi()
 

@@ -4,10 +4,12 @@
 import json
 from flask import Flask,request
 from languageConverter import HandleQuery
+from flask_cors import CORS
  
 # Flask constructor takes the name of
 # current module (__name__) as argument.
 app = Flask(__name__)
+CORS(app)
  
 # The route() function of the Flask class is a decorator,
 # which tells the application which URL should call
