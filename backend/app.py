@@ -40,7 +40,7 @@ def reportVitals():
     if request.method=='POST':
         body=request.json
         score=predict(body['vals'])
-        return json.dumps({"score":score}),200,{"ContentType":"application/json"}
+        return json.dumps({"score":score[0]}),200,{"ContentType":"application/json"}
  
 # main driver function
 if __name__ == '__main__':
