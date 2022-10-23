@@ -8,6 +8,7 @@ import Map, {
   GeolocateControl,
 } from "react-map-gl";
 import { useState } from "react";
+import Movie from './components/Movie';
 
 function App() {
   const [lng, setLng] = useState(78.4867);
@@ -15,7 +16,7 @@ function App() {
 
   return (
     <div className="text-center">
-      <Map
+      {/* <Map
         mapboxAccessToken="pk.eyJ1IjoibmVoYWNoZWt1cmkiLCJhIjoiY2wwdDVnMGN3MGEzcDNjbHpibDB0azhuYiJ9.L8sXbuA3jW0iCl9_b5jG9g"
         style={{
           width: "750px",
@@ -34,7 +35,8 @@ function App() {
         <FullscreenControl />
 
         <GeolocateControl />
-      </Map>
+      </Map> */}
+      <Movie/>
     </div>
   );
 }
