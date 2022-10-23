@@ -1,6 +1,7 @@
 
 # Importing flask module in the project is mandatory
 # An object of Flask class is our WSGI application.
+from email import message
 import json
 from flask import Flask, request, Response
 from languageConverter import HandleQuery
@@ -8,6 +9,8 @@ from flask_cors import CORS
 from model_implementation import predict
 from face_emotion_recognizer import generate_frames, result
 from video import getVideo
+from twilio.rest import Client
+import os
  
 
 # Packages for Spotify
@@ -49,6 +52,11 @@ def accident():
     if request.method == 'POST':
         body = request.json
         if body['airbags']:
+            account_sid = os.environ['TWILIO_ACCOUNT_SID']
+            auth_token = os.environ['TWILIO_AUTH_TOKEN']
+            client = Client(account_sid, auth_token)
+            message=client.messages.create(body="there is an emergency",messaging_service_sid='MG91e24ca8c5bcfe0a10b7876a817a464f',to='+919515172100')
+            print(message.sid)
             return json.dumps({"message": "authorities have been alerted about the accident"}), 200, {"ContentType": "application/json"}
         else:
             return json.dumps({"message":"no major accident occured"}),403,{"ContentType":"application/json"}
