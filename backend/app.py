@@ -55,8 +55,14 @@ def accident():
             account_sid = os.environ['TWILIO_ACCOUNT_SID']
             auth_token = os.environ['TWILIO_AUTH_TOKEN']
             client = Client(account_sid, auth_token)
-            message=client.messages.create(body="there is an emergency",messaging_service_sid='MG91e24ca8c5bcfe0a10b7876a817a464f',to='+919515172100')
+            message=client.messages.create(body="",messaging_service_sid='MG91e24ca8c5bcfe0a10b7876a817a464f',to='+919515172100')
             print(message.sid)
+            call=client.calls.create(
+                        twiml='<Response><Say>An accident has occured, please send help imediately</Say></Response>',
+                        to='+919515172100',
+                        from_='+13608002744'
+                    )
+            print(call.sid)
             return json.dumps({"message": "authorities have been alerted about the accident"}), 200, {"ContentType": "application/json"}
         else:
             return json.dumps({"message":"no major accident occured"}),403,{"ContentType":"application/json"}
