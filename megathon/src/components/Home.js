@@ -33,8 +33,8 @@ function Home() {
     
 
     function apicall() {
-        // console.log("came here");
-        axios.post('http://127.0.0.1:5000/vc', {
+        console.log("came here");
+        axios.post('https://3bf2-14-139-82-6.in.ngrok.io/vc', {
             query : respText,
           })
           .then(function (response) {
@@ -104,8 +104,8 @@ function Home() {
 
         <div style={myStyle}>
             <Link to='/movie'> <button style={btn}> click!</button></Link> 
-            <button onClick={(event)=>{SpeechRecognition.startListening({ language: 'hi-IN' }); apicall()}} style={btn1}>Start</button>
-            <button onClick={SpeechRecognition.stopListening} style={btn2}>Stop</button>
+            <button onClick={() => {SpeechRecognition.startListening({ language: 'hi-IN' })}} style={btn1}>Start</button>
+            <button onClick={(event)=>{SpeechRecognition.stopListening(); apicall()}} style={btn2}>Stop</button>
             <p>{transcript}</p>
             <button onClick={accident} style={btn3}> bags </button>
             {/* <audio controls autoplay>
