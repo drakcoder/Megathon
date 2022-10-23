@@ -61,17 +61,17 @@ def HandleQuery(body):
     if converted[0].lower()=='shut':
         if converted[1]=='the' and converted[2]=='door':
             if body['running']:
-                return False
+                return 'Cannot close door when driving'
             else:
                 return "Closing the door"
     if converted[0].lower()=='close':
         if converted[1]=='the' and converted[2]=='door':
             if body['running']:
-                return False
+                return 'Cannot close door when driving'
             else:
                 return "Closing the door"
         if converted[1]=='door':
             if body['running']:
-                return False
+                return 'Cannot close door when driving'
             else:
                 return "Closing the door"
