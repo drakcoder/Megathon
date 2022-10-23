@@ -1,7 +1,8 @@
 import cv2
 import os
-import requests
+# import requests
 from moviepy.editor import *
+from collections.abc import Mapping
 import pyrebase
 
 image_folder = 'assets/images/'
@@ -63,14 +64,14 @@ def getVideo(mp3_url):
 
 
     mp3_url = 'https://p.scdn.co/mp3-preview/dff3697d38fe2313aa2d3c594039377bfd520c04?cid=37f5cdbd24004b1db95e46a7a37b9d8e'
-    response = requests.get(mp3_url)
-    mp3_file = open('assets/audio/example.mp3', 'wb')
-    mp3_file.write(response.content)
-    audioclip = AudioFileClip("assets/audio/example.mp3").subclip(10, 16)
+    # response = requests.get(mp3_url)
+    # mp3_file = open('assets/audio/example.mp3', 'wb')
+    # mp3_file.write(response.content)
+    # audioclip = AudioFileClip("assets/audio/example.mp3").subclip(10, 16)
     
-    # adding audio to the video clip
-    videoclip = clip.set_audio(audioclip)
-    videoclip.write_videofile("assets/videos/video_with_audio.webm")
+    # # adding audio to the video clip
+    # videoclip = clip.set_audio(audioclip)
+    # videoclip.write_videofile("assets/videos/video_with_audio.webm")
 
     firebase = pyrebase.initialize_app(config)
     storage = firebase.storage()
