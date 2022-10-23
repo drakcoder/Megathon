@@ -7,18 +7,7 @@ function Home() {
 
     let [respText, getText] = useState('');
     let [songs, getSongs] = useState([]);
-
-    // var recognition = new webkitSpeechRecognition();
-    // recognition.continuous = true;
-    // recognition.interimResults = true;
-    // recognition.lang = "hi-IN";
-
-    // var listening = false;
-    // var interim_transcript = '';
-    // var final_transcript = '';
-    // var songs;
-    // var bags = true;
-    // var respText = '';
+    let [status, setStatus]=useState(false);
 
     const {
         transcript,
@@ -30,12 +19,21 @@ function Home() {
         return <span>Browser doesn't support speech recognition.</span>;
     }
     
-    
+    function updateStatus() {
+        if(status == true){
+            setStatus(false);
+        }
+        else{
+            setStatus(true);
+        }
+    }
 
     function apicall() {
         console.log("came here");
+        getText(transcript);
         axios.post('https://3bf2-14-139-82-6.in.ngrok.io/vc', {
             query : respText,
+            running : status,
           })
           .then(function (response) {
             getSongs(response.data.resut);
@@ -95,8 +93,25 @@ function Home() {
     fontSize: "24px"}
 
     const btn3 = {
+        // backgroundColor:
         borderRadius: "45%",
+        height: "85px",
+        width: "85px",
+        position: "absolute",
+        top: "374px",
+        left: "790px",
+        fontSize: "24px"
+    }
 
+    const btn4 = {
+        // backgroundColor:
+        borderRadius: "45%",
+        height: "85px",
+        width: "85px",
+        position: "absolute",
+        top: "74px",
+        left: "20px",
+        fontSize: "24px"
     }
 
 
@@ -108,6 +123,12 @@ function Home() {
             <button onClick={(event)=>{SpeechRecognition.stopListening(); apicall()}} style={btn2}>Stop</button>
             <p>{transcript}</p>
             <button onClick={accident} style={btn3}> bags </button>
+            <button onClick={updateStatus} style={btn4}>
+                {
+                    status == false ? <p>Start Car</p> : <p>Stop Car</p>
+                }
+            
+            </button>
             {/* <audio controls autoplay>
         <source src="https://p.scdn.co/mp3-preview/259d67fae14c258c49add59b2b5e721c335edb90?cid=37f5cdbd24004b1db95e46a7a37b9d8e" type="audio/ogg">
     </audio> */}
