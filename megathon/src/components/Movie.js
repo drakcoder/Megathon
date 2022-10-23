@@ -1,6 +1,6 @@
 import React from 'react'
 
-var x_pos = 0
+var x_pos = 50
 var y_pos = 0
 
 function displayNextImage() {
@@ -61,6 +61,21 @@ titles[0] = 'Bio Diversity Park'
 titles[1] = 'Birla Mandir'
 titles[2] = 'Hussain Sagar'
 
+const theme_video = {
+  'road trip': '/assets/video_with_road_trip.webm',
+  'nature': '/assets/video_with_nature.webm',
+  'party': '/assets/video_with_party.webm',
+  'chill': '/assets/video_with_chill.webm',
+  'emotional': '/assets/video_with_emotional.webm',
+  'calming': '/assets/video_with_calm.webm'
+}
+
+function handleChange() {
+  const d = document.getElementById("inputform").value;
+
+  document.getElementById("myvideo").src = theme_video[d]
+  console.log(d)
+}
 
 
 export default function Movie() {
@@ -69,16 +84,31 @@ export default function Movie() {
 
     return (
         <>
-          <video src={'/assets/video_with_audio.webm'} controls height="100%">
-            Sorry, your browser doesn't support embedded videos.
-          </video>
-          <br/>
-          <marquee  behavior="scroll" direction="right">  
-            <img id="car" src={'/assets/car.png'} width='200px'></img>
-          </marquee>
-          <br/>
-          <img id="img" src="/assets/startpicture.jpg" width='200px'  style={{'position': 'absolute', 'left': '0px', 'right' : '550px'}}/>
-          <div id="title" style={{'position': 'absolute', 'left': '0px', 'backgroundColor': 'white'}}>IIIT Hyderabad</div>
+          <h2>A movie for a lifetime memory</h2>
+          
+          <div style={{'padding': '10px'}} onChange={handleChange}>
+            <p style={{'display': 'inline'}}>Theme: </p>
+            <select id="inputform" name="inputform" display="inline">
+              <option value="road trip">road trip</option>
+              <option value="nature">nature</option>
+              <option value="party">party</option>
+              <option value="chill">chill</option>
+              <option value="emotional">emotional</option>
+              <option value="calming">calming</option>
+            </select>
+          </div>
+          <div>
+            <video src={'/assets/video_with_audio.webm'} id="myvideo" controls height="100%">
+              Sorry, your browser doesn't support embedded videos.
+            </video>
+            <br/>
+            <marquee  behavior="scroll" direction="right">  
+              <img id="car" src={'/assets/car.png'} width='200px'></img>
+            </marquee>
+            <br/>
+            <img id="img" src="/assets/startpicture.jpg" width='200px'  style={{'position': 'absolute', 'left': '0px', 'right' : '550px'}}/>
+            <div id="title" style={{'position': 'absolute', 'left': '0px', 'backgroundColor': 'white'}}>IIIT Hyderabad</div>
+          </div>
         </>
       );
 }
