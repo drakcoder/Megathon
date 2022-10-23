@@ -9,3 +9,6 @@ sklearn==0.0
 spotipy==2.20.0
 pyrebase
 pycryptodome==3.7.3
+opencv-python
+moviepy
+

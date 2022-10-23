@@ -73,9 +73,9 @@ def getVideo(mp3_url):
     # videoclip = clip.set_audio(audioclip)
     # videoclip.write_videofile("assets/videos/video_with_audio.webm")
 
-    # firebase = pyrebase.inialize_app(config)
-    # storage = firebase.storage()
-    # storage.child("video_with_audio.webm").put("assets/videos/video_with_audio.webm")
+    firebase = pyrebase.initialize_app(config)
+    storage = firebase.storage()
+    storage.child("video_with_audio.webm").put("assets/videos/video_with_audio.webm")
     
     
 
