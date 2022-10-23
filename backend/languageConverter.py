@@ -37,7 +37,14 @@ def getSong(song):
     songs=[]
     for idx, track in enumerate(results['tracks']['items']):
         print(idx, track['name'])
-        songs.append(track['name'])
+        songs.append({
+            "name": track['name'],
+            "artisits": [
+                artist["name"] for artist in track["artists"]],
+            "duration_ms": track["duration_ms"],
+            'song_url': track['preview_url'],
+            'cover art': track['album']['images'][0]['url']
+        })
     return songs    
 
 
@@ -53,6 +60,17 @@ def HandleQuery(body):
             return songs
     if converted[0].lower()=='shut':
         if converted[1]=='the' and converted[2]=='door':
+            if body['running']:
+                return False
+            else:
+                return "Closing the door"
+    if converted[0].lower()=='close':
+        if converted[1]=='the' and converted[2]=='door':
+            if body['running']:
+                return False
+            else:
+                return "Closing the door"
+        if converted[1]=='door':
             if body['running']:
                 return False
             else:

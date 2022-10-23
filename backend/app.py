@@ -5,13 +5,15 @@ import json
 from flask import Flask, request
 from languageConverter import HandleQuery
 from flask_cors import CORS
+from model_implementation import predict
+from video import getVideo
+ 
 
 # Packages for Spotify
-from CONSTANTS import client_ID, client_SECRET, WEATHERS
+from CONSTANTS import client_ID, client_SECRET, WEATHERS, themes_songs_map
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials, SpotifyOAuth
 import types
-
 
 # Flask constructor takes the name of
 # current module (__name__) as argument.
@@ -21,6 +23,11 @@ CORS(app)
 # The route() function of the Flask class is a decorator,
 # which tells the application which URL should call
 # the associated function.
+
+@app.route('/movie', methods=['POST'])
+def movie(mp3_url):
+    return getVideo(mp3_url)
+
 
 
 @app.route('/vc', methods=['GET', 'POST'])
@@ -42,7 +49,15 @@ def accident():
         if body['airbags']:
             return json.dumps({"message": "authorities have been alerted about the accident"}), 200, {"ContentType": "application/json"}
         else:
-            return json.dumps({"message": "no major accident occured"}), 403, {"ContentType": "application/json"}
+            return json.dumps({"message":"no major accident occured"}),403,{"ContentType":"application/json"}
+
+@app.route('/reportVitals',methods=['GET','POST'])
+def reportVitals():
+    if request.method=='POST':
+        body=request.json
+        score=predict(body['vals'])
+        return json.dumps({"score":score[0]}),200,{"ContentType":"application/json"}
+ 
 
 
 # For recommendations according to weather
@@ -126,6 +141,10 @@ def previously_played_shows():
         track = item['track']
         print(idx, track['artists'][0]['name'], " – ", track['name'])
 """
+
+@app.route('/theme_songs')
+def get_theme_song(theme):
+    return themes_songs_map[theme]
 
 # main driver function
 if __name__ == '__main__':
