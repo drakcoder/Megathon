@@ -1,7 +1,6 @@
 import { Link, Navigate ,useHistory, useNavigate} from 'react-router-dom';
 import alanBtn from '@alan-ai/alan-sdk-web';
 import React from 'react';
-import {useEffect} from 'react';
 import axios from 'axios';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import { useState, useEffect } from "react";
@@ -39,7 +38,7 @@ function Home() {
                     Navigate("./movie");
                 }
                 else{
-                    Navigate("./map?type?=" + commandData.command);
+                    Navigate("./map?type=" + commandData.command);
                 }
             }
         });
