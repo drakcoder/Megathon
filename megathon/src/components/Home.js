@@ -44,13 +44,14 @@ function Home() {
     if (!browserSupportsSpeechRecognition) {
         return <span>Browser doesn't support speech recognition.</span>;
     }
-    
-    function updateStatus() {
-        if(status == true){
-            setStatus(false);
+  
+
+  function updateStatus() {
+        if (status == true) {
+        setStatus(false);
         }
-        else{
-            setStatus(true);
+        else {
+        setStatus(true);
         }
     }
 
@@ -58,7 +59,7 @@ function Home() {
     function apicall() {
         console.log("came here");
         getText(transcript);
-        axios.post('/vc', {
+        axios.post('http://127.0.0.1:5000/vc', {
             query : respText,
             running : status,
           })
@@ -84,69 +85,73 @@ function Home() {
         .then(function (response) {
           getText(response.data);
         //   respText = response.data;
-          console.log(respText);
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-    }
+        console.log(respText);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
 
 
-    const myStyle={
-        backgroundImage: "url('https://wallpaperaccess.com/full/5552439.jpg')",
-        height:'110vh',
-        fontSize:'50px',
-        backgroundSize: 'cover',
-        backgroundRepeat: 'no-repeat',
-    };
+  const myStyle = {
+    backgroundImage: "url('https://wallpaperaccess.com/full/5552439.jpg')",
+    height: '110vh',
+    fontSize: '50px',
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+  };
 
-    
-    const btn = {borderRadius: "45%",
+
+  const btn = {
+    borderRadius: "45%",
     height: "85px",
     width: "85px",
     position: "absolute",
     top: "175px",
     left: "195px",
-    fontSize: "24px"}
+    fontSize: "24px"
+  };
 
-    const btn1 = {borderRadius: "45%",
+  const btn1 = {
+    borderRadius: "45%",
     height: "85px",
     width: "85px",
     position: "absolute",
     top: "175px",
     left: "326px",
-    fontSize: "24px"}
+    fontSize: "24px"
+  };
 
-    
-    const btn2 = {borderRadius: "45%",
+
+  const btn2 = {
+    borderRadius: "45%",
     height: "85px",
     width: "85px",
     position: "absolute",
     top: "174px",
     left: "465px",
-    fontSize: "24px"}
+    fontSize: "24px"
+  };
 
-    const btn3 = {
-        // backgroundColor:
-        borderRadius: "45%",
-        height: "85px",
-        width: "85px",
-        position: "absolute",
-        top: "374px",
-        left: "790px",
-        fontSize: "24px"
-    }
+  const btn3 = {
+    borderRadius: "45%",
+    height: "85px",
+    width: "85px",
+    position: "absolute",
+    top: "375px",
+    left: "800px",
+    fontSize: "24px"
+  };
+  const btn4 = {
+    borderRadius: "45%",
+    height: "85px",
+    width: "85px",
+    position: "absolute",
+    top: "100px",
+    left: "70px",
+    fontSize: "24px"
+  };
 
-    const btn4 = {
-        // backgroundColor:
-        borderRadius: "45%",
-        height: "85px",
-        width: "85px",
-        position: "absolute",
-        top: "74px",
-        left: "20px",
-        fontSize: "24px"
-    }
 
     const btn5 = {
         borderRadius: "45%",
@@ -185,18 +190,18 @@ function Home() {
             </div>
             <button onClick={() => {SpeechRecognition.startListening({ language: 'hi-IN' })}} style={btn1}>Start</button>
             <button onClick={(event)=>{SpeechRecognition.stopListening(); apicall()}} style={btn2}>Stop</button>
-            <p>{transcript}</p>
+            {/* <p>{transcript}</p> */}
             <button onClick={accident} style={btn3}> bags </button>
             <button onClick={updateStatus} style={btn4}>
                 {
                     status == false ? <p>Start Car</p> : <p>Stop Car</p>
                 }
-            </button>
+            </button> 
             <button onClick={toggle} style={btn5}>{playing ? "Pause" : "Play"}</button>
-            <Link to='/map'><button style={btn6}>Map</button></Link>
+            <Link to='/map?type=catering'><button style={btn6}>Map</button></Link>
         </div>
 
-    );
+  );
 }
 
 export default Home;
